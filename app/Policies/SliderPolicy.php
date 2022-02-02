@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Contact_form;
+use App\Models\Slider;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ContactFormPolicy
+class SliderPolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +25,13 @@ class ContactFormPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contact_form  $contactForm
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Contact_form $contactForm)
+    public function view(User $user, Slider $slider)
     {
         return true;
+
     }
 
     /**
@@ -49,10 +50,10 @@ class ContactFormPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contact_form  $contactForm
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Contact_form $contactForm)
+    public function update(User $user, Slider $slider)
     {
         return $user->Is_admin==1;
 
@@ -62,10 +63,10 @@ class ContactFormPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contact_form  $contactForm
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Contact_form $contactForm)
+    public function delete(User $user, Slider $slider)
     {
         return $user->Is_admin==1;
 
@@ -75,10 +76,10 @@ class ContactFormPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contact_form  $contactForm
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Contact_form $contactForm)
+    public function restore(User $user, Slider $slider)
     {
         return $user->Is_admin==1;
 
@@ -88,10 +89,10 @@ class ContactFormPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Contact_form  $contactForm
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Contact_form $contactForm)
+    public function forceDelete(User $user, Slider $slider)
     {
         return $user->Is_admin==1;
 

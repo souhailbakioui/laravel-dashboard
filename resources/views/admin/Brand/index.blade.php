@@ -1,23 +1,23 @@
 
-        
-      
-       
-         
-        
-   
+
+
+
+
+
+
 @extends('admin.index')
-@section('admin_title','Brands') 
-    
+@section('admin_title','Brands')
+
 @section('tst')
-    
+
 
     <div class="py-12">
         <div class="container">
             <div class="row">
 
  <div class="col-md-8">
-          
-    
+
+
     <div class="card-header">
         Brand  List
     </div>
@@ -32,8 +32,8 @@
                     <th scope="col">created_at</th>
                     <th scope="col">Action</th>
                   </tr>
-               
-                
+
+
 @foreach ($Brand as $item)
 
                   <tr>
@@ -43,22 +43,31 @@
                       height: 100px;
                       width: 106%;
                   "></td>
-                
-                     <td>{{$item->Category->cat_name}}</td> 
-                    
+
+                     <td>{{$item->Category->cat_name}}</td>
+
                     <td>{{(Carbon\Carbon::parse($item->created_at)->diffForHumans())}}</td>
                     <td>
+                        @can('update', $item)
                         <a href="{{Route('Brand.edit',$item->id)}}" class="btn btn-info">Update</a>
+                        @else
+                        <p class="badge badge-danger">you don't have permission to edit it</p>
+                        @endcan
                        <!-- <a href=""  class="btn btn-danger"  onclick="delete()">Delete</a> !-->
                       </td>
                     <td>
+                        @can('delete', $item)
+
                         <button class="btn btn-danger delete" name="{{$item->id}}" id="{{$item->Brand_name}}" onclick=" t($( this )[0]);">Delete</button>
+                        @else
+                        <p class="badge badge-danger">you don't have permission to edit it</p>
+                        @endcan
                     </td>
                   </tr>
 @endforeach
-           
+
               </table>
-    
+
 
             </div>
       <div class="col-md-4">
@@ -73,7 +82,7 @@
                   <div class="input-group" style="margin-top: 9%;margin-bottom: 7%;">
                   <br>
                     <div class="custom-file">
-                  
+
                       <input type="file" class="custom-file-input" name="file" id="inputGroupFile01"aria-describedby="inputGroupFileAddon01"  accept="image/png, image/gif, image/jpeg">
                       <label class="custom-file-label" for="inputGroupFile01">Choose Brand Image</label>
                     </div>
@@ -83,12 +92,12 @@
                   width: 100%;
               "  value=0>
           @foreach ($Cat as $item)
-              
-      
+
+
                     <option selected value="{{$item->id}}">{{$item->cat_name}}</option>
                     @endforeach
                   </select>
-                
+
                     @if ($errors->any())
                     <div class="alert alert-danger">
                       <ul>
@@ -98,7 +107,7 @@
                       </ul>
                   </div>
 
-                  
+
 
                   @endif
                 </div>
@@ -109,17 +118,17 @@
         </div>
       </div>
 
-        
+
 
   </div>
-  
+
 
 
         </div>
     </div>
-   
 
-    
+
+
 
 
 
@@ -130,15 +139,15 @@
     var token = $("meta[name='csrf-token']").attr("content");
     console.log(data['id']);
   Notiflix.Confirm.Show( 'DELETE '+data['id'], 'Do you Delete '+data['id']+'  Brand', 'Yes', 'No',
-   function(){ 
-   
+   function(){
+
     $.ajax({
     url: "Brand/delete/"+data['name']+'/'+data['id'],
     type: 'post',
     data:{"id": data['name'],
     "nom": data['id'],
     "_token": token,
-    
+
     },
     success: function(result) {
    //   $('#table').remove();
@@ -150,12 +159,12 @@
 
     //  console.log($( "#h2" ).load( window.location.href+" #h2" ) );
         console.log(result);
-        
+
     }
 });
-   
-   
-    } ); 
+
+
+    } );
 }
  /* $( document ).ready(function() {
     $( ".delete" ).click(function() {
@@ -169,6 +178,6 @@
 
 
 
-    
+
 
 @endsection

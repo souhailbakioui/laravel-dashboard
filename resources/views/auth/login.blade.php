@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title></title>
+  <title>Login</title>
 
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
@@ -24,7 +24,7 @@
   <!-- SLEEK CSS -->
   <link id="sleek-css" rel="stylesheet" href="{{asset('back-end/assets/css/sleek.css')}}" />
 
-  
+
 
   <!-- FAVICON -->
   <link href="{{asset('back-end/assets/img/favicon.png')}}" rel="shortcut icon" />
@@ -63,7 +63,7 @@
             <div class="card-body p-5">
               @if ($message = Session::get('success'))
               <div class="alert alert-success alert-block" style="margin-top: 1%;">
-                  <button type="button" class="close" data-dismiss="alert">×</button>	
+                  <button type="button" class="close" data-dismiss="alert">×</button>
                       <strong id=message>{{ $message }}</strong>
               </div>
               @endif
@@ -84,12 +84,12 @@
                           <input type="checkbox" />
                           <div class="control-indicator"></div>
                         </label>
-                
+
                       </div>
-                      <p><a class="text-blue" href="{{ route('password.request') }}">Forgot Your Password?</a></p>
+                      {{-- <p><a class="text-blue" href="{{ route('password.request') }}">Forgot Your Password?</a></p> --}}
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign In</button>
-                   
+
                   </div>
                 </div>
               </form>
@@ -99,7 +99,7 @@
       </div>
       <div class="copyright pl-0">
         <p class="text-center">&copy; {{ Carbon\Carbon::now()->format('Y');}}
-          <a class="text-primary" href="https://github.com/souhailbakioui" target="_blank">Bakioui Ouhail</a>.
+          <a class="text-primary" href="https://github.com/souhailbakioui" target="_blank">Bakioui Souhail</a>.
         </p>
       </div>
     </div>

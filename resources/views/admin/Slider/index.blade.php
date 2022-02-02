@@ -1,6 +1,6 @@
- 
+
     @extends('admin.index')
-@section('admin_title',' Slider') 
+@section('admin_title',' Slider')
 
     @section('tst')
 
@@ -9,7 +9,7 @@
         <div class="row">
 
 <div class="col-md-8">
-      
+
 
 <div class="card-header">
     Slider  List
@@ -23,31 +23,38 @@
               <th scope="col">image </th>
               <th scope="col">Action </th>
               </tr>
-           
-            
+
+
 @foreach ($slider as $item)
 
               <tr>
                 <td scope="row">{{$item->id}}</td>
                 <td>{{$item->titre}}</td>
-                
-            
-                 <td>{{$item->description}}</td> 
+
+
+                 <td>{{$item->description}}</td>
                  <td><img src="Image/slider/{{$item->image}}" alt="" style="
                     height: 100px;
                     width: 100%;
                 "></td>
-                
+
                 <td>
-                    <a href="{{Route('Brand.edit',$item->id)}}" class="btn btn-info">Update</a>
+                    @can('edit', $item) <a href="{{Route('Brand.edit',$item->id)}}" class="btn btn-info">Update</a>
+                    @else
+                    <p class="badge badge-danger">you don't have permission to edit it</p>
+                    @endcan
+
                    <!-- <a href=""  class="btn btn-danger"  onclick="delete()">Delete</a> !-->
                   </td>
                 <td>
+                    @can('delete', $item)
                     <button class="btn btn-danger delete" name="{{$item->id}}" id="{{$item->Brand_name}}" onclick=" t($( this )[0]);">Delete</button>
+                    <p class="badge badge-danger">you don't have permission to edit it</p>
+                    @endcan
                 </td>
               </tr>
 @endforeach
-       
+
           </table>
 
 
@@ -64,14 +71,14 @@
               <div class="input-group" style="margin-top: 9%;margin-bottom: 7%;">
               <br>
                 <div class="custom-file">
-              
+
                   <input type="file" class="custom-file-input" name="file" id="inputGroupFile01"aria-describedby="inputGroupFileAddon01"  accept="image/png, image/gif, image/jpeg">
                   <label class="custom-file-label" for="inputGroupFile01">Choose slider Image</label>
                 </div>
               </div>
               <label for="Chose Brande Categorie">Chose slider Description</label>
               <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" name="text" rows="3"></textarea>
-      
+
             </div>
             <button type="submit" class="btn btn-primary">ADD slider</button>
             <form>
@@ -80,7 +87,7 @@
     </div>
   </div>
 
-    
+
 
 </div>
 

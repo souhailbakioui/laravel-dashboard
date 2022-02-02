@@ -1,32 +1,32 @@
 
-     
-   
+
+
 @extends('admin.index')
-@section('admin_title',' Contact') 
+@section('admin_title',' Contact')
 
 @section('tst')
 <h2 class="font-semibold text-xl text-gray-800 leading-tight" id="h2">
-            
-      
+
+
     @if ($message = Session::get('success'))
     <div class="alert alert-success alert-block" style="margin-top: 1%;">
-        <button type="button" class="close" data-dismiss="alert">×</button>	
+        <button type="button" class="close" data-dismiss="alert">×</button>
             <strong id=message>{{ $message }}</strong>
     </div>
     @endif
- 
+
 </h2>
         <a  class="btn btn-primary" href="{{Route('Contact.create')}}" >
-            ADD CONTACT 
+            ADD CONTACT
         </a>
     <div class="py-12">
         <div class="container">
             <div class="row">
 
 
-          
-    
-    
+
+
+
             <table class="table" id='table'>
                 <thead>
                   <tr>
@@ -38,41 +38,50 @@
                     <th scope="col">created_at</th>
                     <th scope="col">Action</th>
                   </tr>
-               
-                
+
+
 @foreach ($Cont as $item)
 
                   <tr>
                     <td scope="row">{{$item->id}}</td>
-                  
+
                     <td>{{$item->adress}}</td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
-                    
-                    
+
+
                     <td>{{(Carbon\Carbon::parse($item->created_at)->diffForHumans())}}</td>
                     <td>
+                        @can('edite', $item)
+
                         <a href="{{Route('Brand.edit',$item->id)}}" class="btn btn-info">Update</a>
-                       <!-- <a href=""  class="btn btn-danger"  onclick="delete()">Delete</a> !-->
+                     @else
+                     <p class="badge badge-danger">you don't have permission to edit it</p>
+                        @endcan   <!-- <a href=""  class="btn btn-danger"  onclick="delete()">Delete</a> !-->
                       </td>
                     <td>
+                        @can('delete', $item)
+
                         <button class="btn btn-danger delete" name="{{$item->id}}" id="{{$item->Brand_name}}" onclick=" t($( this )[0]);">Delete</button>
+                        @else
+                        <p class="badge badge-danger">you don't have permission to delete it</p>
+                           @endcan
                     </td>
                   </tr>
 @endforeach
-           
-              </table>
-    
 
-            
-   
+              </table>
+
+
+
+
 
 
         </div>
     </div>
-   
 
-    
+
+
 
 
 
@@ -83,15 +92,15 @@
     var token = $("meta[name='csrf-token']").attr("content");
     console.log(data['id']);
   Notiflix.Confirm.Show( 'DELETE '+data['id'], 'Do you Delete '+data['id']+'  Brand', 'Yes', 'No',
-   function(){ 
-   
+   function(){
+
     $.ajax({
     url: "Brand/delete/"+data['name']+'/'+data['id'],
     type: 'post',
     data:{"id": data['name'],
     "nom": data['id'],
     "_token": token,
-    
+
     },
     success: function(result) {
    //   $('#table').remove();
@@ -103,12 +112,12 @@
 
     //  console.log($( "#h2" ).load( window.location.href+" #h2" ) );
         console.log(result);
-        
+
     }
 });
-   
-   
-    } ); 
+
+
+    } );
 }
  /* $( document ).ready(function() {
     $( ".delete" ).click(function() {
@@ -122,6 +131,6 @@
 
 
 
-    
+
 
 @endsection

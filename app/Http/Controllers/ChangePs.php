@@ -15,20 +15,20 @@ class ChangePs extends Controller
     }
     public function Update_Password(Request $request)
     {
-     
+
      $request->validate([
 'old_pass'=>'required',
 'password_confirmation' =>'required|same:password|min:6'
 
       ]);
-$hashpass=Auth::user()->password;
-if(Hash::check($request->old_pass, $hashpass)){
- $us= User::findOrFail(Auth::user()->id);
- $us->password=Hash::make($request->input('password'));
- $us->save();
+// $hashpass=Auth::user()->password;
+// if(Hash::check($request->old_pass, $hashpass)){
+//  $us= User::findOrFail(Auth::user()->id);
+//  $us->password=Hash::make($request->input('password'));
+//  $us->save();
  Auth::logout();
- return redirect()->route('login')->with('success'," Password Bien Changer");
-    }
+ return redirect()->route('login')->with('success'," Cannot update , That Account for demo project ");
+    //}
     echo "Same error";
 }
 
@@ -45,14 +45,14 @@ public function Updated_profail(Request $request)
 
 
     ]);
-    $us= User::findOrFail(Auth::user()->id);
-   $us->email=$request->email;
-    $us->name=$request->name;
-    $us->save();
-    return redirect()->route('upade.profail')->with('success'," Updted With Succes");
+//     $us= User::findOrFail(Auth::user()->id);
+//    $us->email=$request->email;
+//     $us->name=$request->name;
+//     $us->save();
+    return redirect()->route('upade.profail')->with('success'," Cannot update , That Account for demo project ");
 
 
-   
+
 
 }
 

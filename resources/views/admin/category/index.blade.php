@@ -1,9 +1,9 @@
 
-    
-    
+
+
 
 @extends('admin.index')
-@section('admin_title',' Category') 
+@section('admin_title',' Category')
 
 @section('tst')
     <div class="py-12">
@@ -11,8 +11,8 @@
             <div class="row">
 
  <div class="col-md-8">
-          
-    
+
+
     <div class="card-header">
         Categorie  List
     </div>
@@ -21,27 +21,35 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">name</th>
-           
+
                     <th scope="col">created_at</th>
                     <th scope="col">Action</th>
                   </tr>
-               
-                
+
+
 @foreach ($Cat as $item)
 
 
                   <tr>
                     <td scope="row">{{$item->id}}</td>
                     <td>{{$item->cat_name}}</td>
-             
+
                     <td>{{(Carbon\Carbon::parse($item->created_at)->diffForHumans())}}</td>
                     <td>
+                        @can('edit', $item)
                         <a href="{{Route('Category.edit',$item->id)}}" class="btn btn-info">Update</a>
+                        @else
+<p class="badge badge-danger">you don't have permission to edit it</p>
+                        @endcan
+                        @can('delete', $item)
                         <a href="{{Route('sdelete',$item->id)}}"  class="btn btn-danger">Delete</a>
+                        @else
+                        <p class="badge badge-danger">you don't have permission to delete it</p>
+                                                @endcan
                     </td>
                   </tr>
 @endforeach
-           
+
               </table>
     {{$Cat->links()}}
 
@@ -66,7 +74,7 @@
         </div>
       </div>
 
-        
+
 
   </div>
 
@@ -75,11 +83,11 @@
 
 
     <div class="col-md-8">
-             
+
        <div class="card-header">
            Trashed  List
        </div>
-   
+
                <table class="table">
                    <thead>
                      <tr>
@@ -89,11 +97,11 @@
                        <th scope="col">created_at</th>
                        <th scope="col">Action</th>
                      </tr>
-                  
-              
+
+
    @foreach ($Trashed as $item)
-   
-   
+
+
                      <tr>
                        <td scope="row">{{$item->id}}</td>
                        <td>{{$item->cat_name}}</td>
@@ -105,21 +113,21 @@
                        </td>
                      </tr>
    @endforeach
-              
+
                  </table>
        {{$Trashed->links()}}
-   
+
                </div>
- 
-   
-           
-   
+
+
+
+
      </div>
 
 
         </div>
     </div>
-   
+
 
 
 

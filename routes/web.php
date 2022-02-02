@@ -27,7 +27,7 @@ Route::get('/', function () {
     $about=home_about::findOrFail(1);
     $m=multipic::all();
     $c =Category::all('cat_name')->take(5);
-  
+
     $m  = DB::table('multipics')
     ->join('brands', 'multipics.id_Brand', '=', 'brands.id')
     ->join('categories', 'categories.id', '=', 'brands.Cat_id')
@@ -38,7 +38,7 @@ foreach ($m as $t)
 $a[]= $t->cat_name;
 $a = array_unique($a);
     return view('home',compact('about',"Brand","s",'m',"c",'a'));
-    
+
 
 
 })->name('home');
@@ -80,7 +80,7 @@ Route::get('tst1', function () {
 });
 
 //////////Route For Slider ///////////////
-
+Route::group(['middleware' => 'auth'], function () {
 Route::get('Slider', "HomeController@Slider_home")->name("slider");
 Route::Post('Slider', "HomeController@store")->name("slider_store");
 
@@ -92,3 +92,5 @@ Route::Post('users/passowrd','ChangePs@Update_Password')->name('update.password'
 ///////// UPDATE PROFAIL /////////////
 Route::get('users/Update_profail','ChangePs@Update_profail')->name('upade.profail');
 Route::Post('users/Update_profail','ChangePs@Updated_profail')->name('updated.profail');
+
+});

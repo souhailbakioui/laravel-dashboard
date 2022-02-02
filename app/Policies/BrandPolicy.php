@@ -18,7 +18,8 @@ class BrandPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
+
     }
 
     /**
@@ -30,7 +31,7 @@ class BrandPolicy
      */
     public function view(User $user, Brand $brand)
     {
-        //
+return true;
     }
 
     /**
@@ -41,7 +42,7 @@ class BrandPolicy
      */
     public function create(User $user)
     {
-        //
+       return $user->Is_admin==1;
     }
 
     /**
@@ -53,7 +54,8 @@ class BrandPolicy
      */
     public function update(User $user, Brand $brand)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -65,7 +67,8 @@ class BrandPolicy
      */
     public function delete(User $user, Brand $brand)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -77,7 +80,8 @@ class BrandPolicy
      */
     public function restore(User $user, Brand $brand)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -89,6 +93,7 @@ class BrandPolicy
      */
     public function forceDelete(User $user, Brand $brand)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 }

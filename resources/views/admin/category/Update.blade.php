@@ -1,14 +1,14 @@
 
 @extends('admin.index')
-@section('admin_title','Edite Category') 
+@section('admin_title','Edit Category')
 
 @section('tst')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         <b>EDITE CATEGORIE</b>
         </h2>
-    
 
-    
+
+
     <div class="py-12">
         <div class="container">
             <div class="row">
@@ -33,7 +33,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Save Edite CATEGORY</button>
                             <form>
-            
+
                             </div>
                     </div>
                   </div>
@@ -51,4 +51,4 @@
 
 
 
-@endsection 
+@endsection

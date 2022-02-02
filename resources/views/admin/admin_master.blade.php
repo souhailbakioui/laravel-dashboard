@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
         <script src="{{asset('dist/notiflix-aio-2.7.0.min.js')}}"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-        
+
 <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -66,7 +66,7 @@
     <div class="mobile-sticky-body-overlay"></div>
 
     <div class="wrapper">
-      
+
               <!--
           ====================================
           ——— LEFT SIDEBAR WITH FOOTER
@@ -74,7 +74,7 @@
         -->
        @include('admin.body.sidebar')
 
-      
+
 
       <div class="page-wrapper">
                   <!-- Header -->
@@ -152,10 +152,10 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="{{asset('storage').'/'.Auth::user()->profile_photo_path}}" class="user-image" style="
+                      {{-- <img src="{{asset('storage').'/'.Auth::user()->profile_photo_path}}" class="user-image" style="
                       margin-top: 13px;
                       float: left;
-                  " alt="User Image" />
+                  " alt="User Image" /> --}}
                       <span class="d-none d-lg-inline-block" style="
                       padding-left: 15px;
                   ">{{Auth::user()->name}}</span>
@@ -163,10 +163,10 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
-                        <img src="{{asset('storage').'/'.Auth::user()->profile_photo_path}}" class="img-circle" alt="User Image" style="
+                        {{-- <img src="{{asset('storage').'/'.Auth::user()->profile_photo_path}}" class="img-circle" alt="User Image" style="
     float: left;
     margin-top: -10px;
-"  />
+"  /> --}}
                         <div class="d-inline-block">
                           {{Auth::user()->name}}<small class="pt-1">{{Auth::user()->email}}</small>
                         </div>
@@ -208,11 +208,11 @@
 
 
         <div class="content-wrapper">
-          <div class="content">						 
+          <div class="content">
         @yield('admin_var')
 </div>
 
-          
+
 
 
         </div>
@@ -220,7 +220,7 @@
                   <footer class="footer mt-auto">
             <div class="copyright bg-white">
               <p>
-                &copy; <span id="copy-year">{{ Carbon\Carbon::now()->format('Y');}}</span> Copyright  
+                &copy; <span id="copy-year">{{ Carbon\Carbon::now()->format('Y');}}</span> Copyright
                 <a
                   class="text-primary"
                   href="https://github.com/souhailbakioui"
@@ -229,13 +229,13 @@
                 >.
               </p>
             </div>
-          
+
           </footer>
 
       </div>
     </div>
 
-    
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
 <script src="{{asset('back-end/assets/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('back-end/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -259,7 +259,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
- 
+
   @if (Session::has('message'))
  var type="{{ Session::get('alert-type','info')}}";
 switch  (type){

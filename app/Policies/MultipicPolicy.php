@@ -18,7 +18,7 @@ class MultipicPolicy
      */
     public function viewAny(User $user)
     {
-        //
+  return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class MultipicPolicy
      */
     public function view(User $user, multipic $multipic)
     {
-        //
+      return true;
     }
 
     /**
@@ -41,7 +41,8 @@ class MultipicPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -53,7 +54,8 @@ class MultipicPolicy
      */
     public function update(User $user, multipic $multipic)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -65,7 +67,8 @@ class MultipicPolicy
      */
     public function delete(User $user, multipic $multipic)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -77,7 +80,8 @@ class MultipicPolicy
      */
     public function restore(User $user, multipic $multipic)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -89,6 +93,7 @@ class MultipicPolicy
      */
     public function forceDelete(User $user, multipic $multipic)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 }

@@ -18,7 +18,7 @@ class HomeAboutPolicy
      */
     public function viewAny(User $user)
     {
-        //
+       return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class HomeAboutPolicy
      */
     public function view(User $user, home_about $homeAbout)
     {
-        //
+     return true;
     }
 
     /**
@@ -41,7 +41,8 @@ class HomeAboutPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -53,7 +54,8 @@ class HomeAboutPolicy
      */
     public function update(User $user, home_about $homeAbout)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -65,7 +67,8 @@ class HomeAboutPolicy
      */
     public function delete(User $user, home_about $homeAbout)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -77,7 +80,8 @@ class HomeAboutPolicy
      */
     public function restore(User $user, home_about $homeAbout)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 
     /**
@@ -89,6 +93,7 @@ class HomeAboutPolicy
      */
     public function forceDelete(User $user, home_about $homeAbout)
     {
-        //
+        return $user->Is_admin==1;
+
     }
 }

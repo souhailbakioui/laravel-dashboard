@@ -1,6 +1,6 @@
- 
+
     @extends('admin.index')
-@section('admin_title',' About') 
+@section('admin_title',' About')
 
     @section('tst')
     <div class="py-12">
@@ -8,8 +8,8 @@
             <div class="row">
 
  <div class="col-md-8">
-          
-    
+
+
     <div class="card-header">
         Brand  List
     </div>
@@ -24,30 +24,41 @@
                     <th scope="col">created_at</th>
                     <th scope="col">Action</th>
                   </tr>
-               
-                
+
+
 @foreach ($all as $item)
 
                   <tr>
                     <td scope="row">{{$item->id}}</td>
                     <td>{{$item->title}}</td>
                     <td>{{$item->short_dis}}</td>
-                   
-                     <td>{{$item->long_dis}}</td> 
-                    
+
+                     <td>{{$item->long_dis}}</td>
+
                     <td>{{(Carbon\Carbon::parse($item->created_at)->diffForHumans())}}</td>
                     <td>
+                        @can('edit', $item)
                         <a href="{{Route('Brand.edit',$item->id)}}" class="btn btn-info">Update</a>
+                        @else
+                        <p class="badge badge-danger">you don't have permission to edit it</p>
+                        @endcan
                        <!-- <a href=""  class="btn btn-danger"  onclick="delete()">Delete</a> !-->
                       </td>
                     <td>
+                        @can('delete', $item)
+
+
                         <button class="btn btn-danger delete" name="{{$item->id}}" id="{{$item->Brand_name}}" onclick=" t($( this )[0]);">Delete</button>
+                        @else
+                        <p class="badge badge-danger">you don't have permission to delete it</p>
+
+                        @endcan
                     </td>
                   </tr>
 @endforeach
-           
+
               </table>
-    
+
 
             </div>
       <div class="col-md-4">
@@ -67,7 +78,7 @@
                   <textarea type="tel" class="form-select" name="long_dis" id="select" aria-label="Default select example" style="
                   width: 100%;
               "  value=0></textarea>
-    
+
                 </div>
                 <button type="submit" class="btn btn-primary">ADD BRAND</button>
                 <form>
@@ -76,17 +87,17 @@
         </div>
       </div>
 
-        
+
 
   </div>
-  
+
 
 
         </div>
     </div>
-   
 
-    
+
+
 
 
 
@@ -97,15 +108,15 @@
     var token = $("meta[name='csrf-token']").attr("content");
     console.log(data['id']);
   Notiflix.Confirm.Show( 'DELETE '+data['id'], 'Do you Delete '+data['id']+'  Brand', 'Yes', 'No',
-   function(){ 
-   
+   function(){
+
     $.ajax({
     url: "Brand/delete/"+data['name']+'/'+data['id'],
     type: 'post',
     data:{"id": data['name'],
     "nom": data['id'],
     "_token": token,
-    
+
     },
     success: function(result) {
    //   $('#table').remove();
@@ -117,12 +128,12 @@
 
     //  console.log($( "#h2" ).load( window.location.href+" #h2" ) );
         console.log(result);
-        
+
     }
 });
-   
-   
-    } ); 
+
+
+    } );
 }
  /* $( document ).ready(function() {
     $( ".delete" ).click(function() {

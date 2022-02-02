@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
@@ -19,7 +19,7 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
+
     public function index()
     {
         $Cat=Category::all();
@@ -31,7 +31,7 @@ class BrandController extends Controller
         'message'=>'test',
         'alert-type'=>'error'
        );
-      
+
        //echo"<br>" .($b->Category->cat_name);
         return view('admin.Brand.index',compact('Brand','Cat')) ->with($notification);;
     }
@@ -54,8 +54,9 @@ class BrandController extends Controller
      */
     public function store(BrandRequset $request)
     {
+
  $brand_img =$request->input('file');
- 
+
 if($request['file']){
 
 
@@ -65,7 +66,7 @@ if($request['file']){
          $up_location='Image/brand/';
          $last_img=$up_location.$img_name;
          $request->file('file')->move($up_location,$img_name);
- 
+
     $b=new Brand  ;
     $b->Brand_name=$request->input('brand_name');
     $b->Brand_img=$img_name;
@@ -115,7 +116,8 @@ if($request['file']){
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $brand)
-    { 
+    {
+        $this->authorize('update',$brand);
        $pic= Brand::findOrFail($brand)->Brand_img;
        if($request['file']){
         $name_gen=hexdec(uniqid());
@@ -123,15 +125,15 @@ if($request['file']){
         $img_name=$name_gen.'.'.$img_ext;
         $up_location='Image/brand/';
         $last_img=$up_location.$img_name;
-     
+
          File::delete('Image/brand/'.$pic);
         $request->file('file')->move($up_location,$img_name);
-      
+
         $pic=$img_name;
 
-       
+
        }
-     
+
        Brand::findOrFail($brand)->update([
         'Brand_name'=>$request->input('brand_name'),
         'Cat_id'=>$request->input('select'),
@@ -144,8 +146,8 @@ if($request['file']){
        );
        return redirect()->route('Brand.index')
        ->with($notification);
-    
-    
+
+
     }
 
     /**
@@ -155,44 +157,44 @@ if($request['file']){
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    { 
+    {
         $b=Brand::findOrFail($id);
         $n=$b->Brand_name;
         /*File::delete('Image/brand/'.$b->$Brand_img);
         Brand::findOrFail($brand)->delete();*/
        /*return redirect()->route('Brand.index')
         ->with('success'," bien ajouter");*/
-        //Session::flash('success','  This is a message!'); 
+        //Session::flash('success','  This is a message!');
 
       //return $id;
     }
     public function delete(Request $request,$id,$nom)
-    { 
-    
+    {
 
-        
+
+
     try {
    $request->session()->flash('success', "{$nom} Brand Delete with  successful!");
-     // $message = Session::get('success');  
+     // $message = Session::get('success');
        $b=Brand::findOrFail($id);
         File::delete('Image/brand/'.$b->Brand_img);
         Brand::findOrFail($id)->delete();
-    
+
 
     } catch (Throwable $e) {}
-    
-       
+
+
       /* return redirect()->route('Brand.index')
         ->with('success'," bien ajouter");*/
       //  Session::get('success');
      // $request->session()->reflash();
     // $message = Session::get('success');
- 
+
       return 0;
     }
     public function GetOut()
     {
-  
+
      Auth::logout();
      return redirect()->route('login')->with('success','Log Out with succs');
     }

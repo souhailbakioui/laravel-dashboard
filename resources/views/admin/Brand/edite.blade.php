@@ -1,8 +1,8 @@
 
 
-  
+
     @extends('admin.index')
-    @section('admin_title','Edite Brands') 
+    @section('admin_title','Edit Brands')
     @section('tst')  <h2 class="font-semibold text-xl text-gray-800 leading-tight">
     <b>EDITE CATEGORIE</b>
     </h2>
@@ -23,7 +23,7 @@
                     <div class="input-group" style="margin-top: 9%;margin-bottom: 7%;">
                     <br>
                       <div class="custom-file">
-                    
+
                         <input type="file" class="custom-file-input" name="file" id="file" id="inputGroupFile01"aria-describedby="inputGroupFileAddon01"value="{{old('Brand_img', $item->Brand_img)}}"  accept="image/png, image/gif, image/jpeg">
                         <label class="custom-file-label" for="inputGroupFile01">Choose Brand Image</label>
                       </div>
@@ -35,15 +35,15 @@
             @foreach ($Cat as $items)
    @if ($items->id==$item->Cat_id)
 
-     <option value="{{$items->id}}" selected>{{$items->cat_name}}  
+     <option value="{{$items->id}}" selected>{{$items->cat_name}}
    @else
-     <option value="{{$items->id}}" >{{$items->cat_name}}  
-       
+     <option value="{{$items->id}}" >{{$items->cat_name}}
+
    @endif
                       </option>
                       @endforeach
                     </select>
-                  
+
                       @if ($errors->any())
                       <div class="alert alert-danger">
                         <ul>
@@ -56,7 +56,7 @@
                   </div>
                   <button type="submit" class="btn btn-primary">ADD BRAND</button>
                   <form>
-  
+
                   </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
           <img id='img'src="{{asset('Image/brand/'.$item->Brand_img)}}" alt="">
 
         </center>
-         
+
         </div>
 
       </div>
